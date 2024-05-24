@@ -1,7 +1,17 @@
 <script setup></script>
 
 <template>
-  <main>This is login Page</main>
+  <main class="main-container">
+    <h1>This is login Page</h1>
+  </main>
 </template>
 
-<style scoped></style>
+<style scoped>
+.main-container {
+  background-color: var(--background);
+  flex-grow: 1;
+  place-items: center;
+  place-content: center;
+  display: flex;
+}
+</style>

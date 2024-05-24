@@ -33,7 +33,7 @@ watch(props, () => {
 header {
   line-height: 1.5;
   min-height: v-bind(headerHeight);
-  background-color: var(--background);
+  background-color: var(--header-background);
 }
 
 nav a.router-link-exact-active {

@@ -25,7 +25,11 @@
   --positive: #6ccb4b;
   --negative: #cb4b4b;
   --warning: #fbc61e;
-  --background: #00056a;
+  --header-background: #00056a;
+  --background: #f7f8fe;
+
+  /* Widths */
+  --sidebar-width: 230px;
 }
 
 /* semantic color variables for this project */
@@ -92,4 +96,10 @@ body {
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+#app {
+  display: flex;
+  height: 100vh;
+  flex-direction: column;
 }
