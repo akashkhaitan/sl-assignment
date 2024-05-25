@@ -32,6 +32,9 @@
   /* Widths */
   --dashboard-header-height: 50px;
   --sidebar-width: 230px;
+
+  /* button colors */
+  --primary-but: #6e58f1;
 }
 
 /* semantic color variables for this project */
