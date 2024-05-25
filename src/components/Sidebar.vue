@@ -40,7 +40,7 @@ const belowItems = [
     icon: icons.IconSlack
   },
   {
-    selected: true,
+    selected: false,
     title: 'Smartlead Tutorials',
     icon: icons.IconTutorial
   }
