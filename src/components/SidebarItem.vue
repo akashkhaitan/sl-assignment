@@ -42,6 +42,7 @@ defineProps({
 
 .selected {
   background-color: var(--primary10);
+  margin-right: 2px;
 }
 
 .selected .bar {
