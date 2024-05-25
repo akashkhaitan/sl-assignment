@@ -35,6 +35,9 @@
 
   /* button colors */
   --primary-but: #6e58f1;
+
+  /* Table colors */
+  --table-header-bg-color: #e9ebf9;
 }
 
 /* semantic color variables for this project */

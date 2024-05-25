@@ -1,4 +1,5 @@
 <script setup>
+import AllCampaigns from '@/components/AllCampaigns.vue'
 import Sidebar from '@/components/Sidebar.vue'
 import Topbar from '@/components/Topbar.vue'
 </script>
@@ -6,9 +7,8 @@ import Topbar from '@/components/Topbar.vue'
 <template>
   <Sidebar class="sidebar" />
   <Topbar class="top-bar" />
-
   <main class="main-container">
-    <div>Right Content</div>
+    <AllCampaigns></AllCampaigns>
   </main>
 </template>
 
