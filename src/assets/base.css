@@ -22,6 +22,7 @@
 
   /* Color Variables */
   --primary: #757ae9;
+  --primary10: #757ae910;
   --positive: #6ccb4b;
   --negative: #cb4b4b;
   --warning: #fbc61e;
@@ -29,6 +30,7 @@
   --background: #f7f8fe;
 
   /* Widths */
+  --dashboard-header-height: 50px;
   --sidebar-width: 230px;
 }
 
