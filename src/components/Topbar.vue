@@ -7,7 +7,7 @@ import IconSearch from './icons/IconSearch.vue'
 <template>
   <div class="topbar">
     <div class="tab">
-      <span> All campaigns(24)</span>
+      <span> All Campaigns(24)</span>
       <span class="bar"> </span>
     </div>
     <div class="right-con">
