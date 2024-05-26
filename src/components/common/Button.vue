@@ -10,12 +10,16 @@ const attrs = useAttrs()
 
 <style scoped>
 button {
-  background-color: var(--primary-but);
+  background: var(--primary-but);
   color: white;
   outline: none;
   border: none;
   font-weight: 500;
   border-radius: 3px;
   font-size: 15px;
+}
+button:disabled {
+  background: #edeef8;
+  color: #a9abc1;
 }
 </style>
