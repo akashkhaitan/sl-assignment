@@ -1,14 +1,23 @@
 # sl-assignment
 
-This template should help get you started developing with Vue 3 in Vite.
+Sl Assignment made using Vue, Vuex and custom components
 
-## Recommended IDE Setup
+## Use any of the below credentials for login
 
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur).
+email: akashkhaitan@gmail.com
+password: password
 
-## Customize configuration
+email: dinesh@sl.com
+password: password
 
-See [Vite Configuration Reference](https://vitejs.dev/config/).
+email: vaibhav@sl.com
+password: password
+
+email: prafulla@sl.com
+password: password
+
+email: aditi@sl.com
+password: password
 
 ## Project Setup
 
