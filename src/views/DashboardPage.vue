@@ -2,13 +2,28 @@
 import AllCampaigns from '@/components/AllCampaigns.vue'
 import Sidebar from '@/components/Sidebar.vue'
 import Topbar from '@/components/Topbar.vue'
+import { ref, watch } from 'vue'
+import { campaigns } from '@/mocks/allCampaigns'
+
+const searchText = ref('')
+const filteredCampaigns = ref([...campaigns])
+
+const handleSearchValue = (searchValue) => {
+  searchText.value = searchValue
+}
+
+watch(searchText, () => {
+  filteredCampaigns.value = campaigns.filter((campaign) =>
+    campaign.title.toLowerCase().includes(searchText.value.toLowerCase())
+  )
+})
 </script>
 
 <template>
   <Sidebar class="sidebar" />
-  <Topbar class="top-bar" />
+  <Topbar class="top-bar" @searchTextChange="handleSearchValue" />
   <main class="main-container">
-    <AllCampaigns></AllCampaigns>
+    <AllCampaigns :campaigns="filteredCampaigns"></AllCampaigns>
   </main>
 </template>
 

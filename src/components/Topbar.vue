@@ -2,6 +2,8 @@
 import SearchBar from './common/SearchBar.vue'
 import Button from './common/Button.vue'
 import IconSearch from './icons/IconSearch.vue'
+
+const emit = defineEmits(['searchTextChange'])
 </script>
 
 <template>
@@ -11,7 +13,12 @@ import IconSearch from './icons/IconSearch.vue'
       <span class="bar"> </span>
     </div>
     <div class="right-con">
-      <SearchBar width="264px" :icon="IconSearch" class="search" />
+      <SearchBar
+        width="264px"
+        :icon="IconSearch"
+        class="search"
+        @input="(event) => emit('searchTextChange', event.target.value)"
+      />
       <Button class="add-camp-button">+ Add Campaign</Button>
     </div>
   </div>

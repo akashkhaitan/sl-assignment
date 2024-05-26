@@ -1,11 +1,14 @@
 <script setup>
-defineProps({ width: { type: String }, icon: { type: Object } })
+defineProps({
+  width: { type: String },
+  icon: { type: Object }
+})
 </script>
 
 <template>
   <div class="searchbar">
     <component :is="icon" />
-    <input type="text" placeholder="Search Campaigns" />
+    <input type="text" v-bind="$attrs" placeholder="Search Campaigns" />
   </div>
 </template>
 
