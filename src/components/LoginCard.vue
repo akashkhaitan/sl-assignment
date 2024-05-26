@@ -42,7 +42,8 @@ const clearError = () => {
 watch(userEmail, clearError)
 watch(userPassword, clearError)
 
-const handleSignIn = () => {
+const handleSignIn = (event) => {
+  event.preventDefault()
   if (
     Object.prototype.hasOwnProperty.call(slUsers, userEmail.value) &&
     slUsers[userEmail.value].password === userPassword.value
@@ -73,7 +74,7 @@ onMounted(() => {
       <span class="heading">Welcome to Smartlead.ai</span>
       <span class="sub-heading">Log in to your account </span>
     </div>
-    <form class="input-section flex-column">
+    <form class="input-section flex-column" @submit="handleSignIn">
       <InputField label="Email" v-model="userEmail"></InputField>
       <InputField
         label="Password"
