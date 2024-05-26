@@ -1,8 +1,10 @@
-<script setup></script>
+<script setup>
+import LoginCard from '@/components/LoginCard.vue'
+</script>
 
 <template>
   <main class="main-container">
-    <h1>This is login Page</h1>
+    <LoginCard></LoginCard>
   </main>
 </template>
 
@@ -10,8 +12,9 @@
 .main-container {
   background-color: var(--background);
   flex-grow: 1;
-  place-items: center;
   place-content: center;
   display: flex;
+  margin-top: 80px;
+  padding-top: 64px;
 }
 </style>
