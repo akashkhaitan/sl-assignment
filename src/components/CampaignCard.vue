@@ -7,6 +7,11 @@ import { computed, ref } from 'vue'
 import Pause from './icons/actions/Pause.vue'
 import Edit from './icons/actions/Edit.vue'
 import More from './icons/actions/More.vue'
+import ReportItem from './ReportItem.vue'
+import InfoFilled from './icons/InfoFilled.vue'
+import InfoOutlined from './icons/InfoOutlined.vue'
+import ErrorIcon from './icons/ErrorIcon.vue'
+import OpenTab from './icons/OpenTab.vue'
 
 const props = defineProps({
   campaignData: {
@@ -36,6 +41,15 @@ const icons = {
   stopped: StoppedIcon,
   paused: PausedIcon
 }
+
+const colors = {
+  draft: '#999ba8',
+  sent: '#6e58f1',
+  clicked: '#eeb728',
+  opened: '#bf51c1',
+  replied: '#51c1c1',
+  positiveReply: '#2cdb28'
+}
 </script>
 
 <template>
@@ -46,8 +60,11 @@ const icons = {
     </div>
     <div class="campaign">
       <component :is="icons[campaignData.status]"></component>
-      <div class="campTitleSec">
-        <span class="title-text">{{ campaignData.title }}</span>
+      <div class="camp-title-sec">
+        <div class="title-sec">
+          <span class="title-text">{{ campaignData.title }}</span>
+          <OpenTab></OpenTab>
+        </div>
         <div class="info text-color-2">
           <span><span class="dot"></span></span>
           <span>{{ campaignData.status }} on {{ campaignData.date }}</span>
@@ -57,51 +74,55 @@ const icons = {
       </div>
     </div>
     <div class="report">
-      <div class="report-item">
-        <span
-          class="count-font sent-color"
-          :class="{ 'draft-color': campaignData.status === 'drafted' }"
-        >
-          {{ campaignData.sentCount }}</span
-        >
-        <span class="text-color-2">Sent</span>
-      </div>
-      <div class="report-item">
-        <span
-          class="count-font clicked-color"
-          :class="{ 'draft-color': campaignData.status === 'drafted' }"
-        >
-          {{ campaignData.clickedCount }}</span
-        >
-        <span class="text-color-2">Clicked</span>
-      </div>
-      <div class="report-item">
-        <span
-          class="count-font opened-color"
-          :class="{ 'draft-color': campaignData.status === 'drafted' }"
-        >
-          {{ campaignData.openedCount }}</span
-        >
-        <span class="text-color-2">Opened</span>
-      </div>
-      <div class="report-item">
-        <span
-          class="count-font replied-color"
-          :class="{ 'draft-color': campaignData.status === 'drafted' }"
-        >
-          {{ campaignData.repliedCount }}</span
-        >
-        <span class="text-color-2">Replied</span>
-      </div>
-      <div class="report-item">
-        <span
-          class="count-font positive-reply-color"
-          :class="{ 'draft-color': campaignData.status === 'drafted' }"
-        >
-          {{ campaignData.positiveReplyCount }}</span
-        >
-        <span class="text-color-2">Positive Reply</span>
-      </div>
+      <ReportItem
+        :item="{
+          count: campaignData.sentCount,
+          countColor: campaignData.status === 'drafted' ? colors.draft : colors.sent,
+          percent: '',
+          label: 'Sent',
+          icon: null
+        }"
+      ></ReportItem>
+
+      <ReportItem
+        :item="{
+          count: campaignData.clickedCount,
+          countColor: campaignData.status === 'drafted' ? colors.draft : colors.clicked,
+          percent: campaignData.clickedPercent,
+          label: 'Clicked',
+          icon: campaignData.status === 'drafted' ? ErrorIcon : null
+        }"
+      ></ReportItem>
+
+      <ReportItem
+        :item="{
+          count: campaignData.openedCount,
+          countColor: campaignData.status === 'drafted' ? colors.draft : colors.opened,
+          percent: campaignData.openedPercent,
+          label: 'Opened',
+          icon: campaignData.status === 'drafted' ? ErrorIcon : null
+        }"
+      ></ReportItem>
+
+      <ReportItem
+        :item="{
+          count: campaignData.repliedCount,
+          countColor: campaignData.status === 'drafted' ? colors.draft : colors.replied,
+          percent: campaignData.repliedPercent,
+          label: 'Replied',
+          icon: campaignData.status === 'drafted' ? ErrorIcon : null
+        }"
+      ></ReportItem>
+
+      <ReportItem
+        :item="{
+          count: campaignData.positiveReplyCount,
+          countColor: campaignData.status === 'drafted' ? colors.draft : colors.positiveReply,
+          percent: campaignData.positiveReplyPercent,
+          label: 'Positive Reply',
+          icon: campaignData.status === 'drafted' ? InfoFilled : InfoOutlined
+        }"
+      ></ReportItem>
     </div>
     <div class="actions">
       <button class="action-button">
@@ -150,10 +171,18 @@ input[type='checkbox'] {
   display: flex;
   gap: 1rem;
 }
-.campTitleSec {
+.camp-title-sec {
   display: flex;
   flex-direction: column;
 }
+
+.title-sec {
+  display: flex;
+  flex-direction: row;
+  gap: 4px;
+  align-items: center;
+}
+
 .title-text {
   color: #6e58f1;
   font-weight: 700;
@@ -180,37 +209,6 @@ input[type='checkbox'] {
 .report {
   width: 45%;
   display: flex;
-}
-.report-item {
-  display: flex;
-  flex-direction: column;
-  width: 20%;
-}
-
-.count-font {
-  font-weight: 500;
-  font-size: 20px;
-  line-height: 26.04px;
-}
-
-.sent-color {
-  color: #6e58f1;
-}
-.clicked-color {
-  color: #eeb728;
-}
-.opened-color {
-  color: #bf51c1;
-}
-.replied-color {
-  color: #51c1c1;
-}
-.positive-reply-color {
-  color: #2cdb28;
-}
-
-.draft-color {
-  color: #999ba8;
 }
 
 .text-color-2 {
