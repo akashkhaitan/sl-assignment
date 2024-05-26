@@ -60,7 +60,8 @@ onMounted(() => {
         <img src="@/assets/avatar-default.jpeg" class="avatar" />
         <div class="popup">
           <div class="popup-item">
-            <span>Logged In User</span>
+            <span>Hi, {{ loggedInUser?.name }}</span>
+            <span>Your logged in email</span>
             <span>{{ loggedInUser?.email }}</span>
           </div>
           <div class="popup-item">

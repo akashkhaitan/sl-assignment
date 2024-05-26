@@ -9,28 +9,28 @@ export const slUsers = {
   'dinesh@sl.com': {
     password: 'password',
     details: {
-      email: 'akashkhaitan@gmail.com',
+      email: 'dinesh@sl.com',
       name: 'Dinesh'
     }
   },
   'vaibhav@sl.com': {
     password: 'password',
     details: {
-      email: 'akashkhaitan@gmail.com',
+      email: 'vaibhav@sl.com',
       name: 'Vaibhav'
     }
   },
   'prafulla@sl.com': {
     password: 'password',
     details: {
-      email: 'akashkhaitan@gmail.com',
+      email: 'prafulla@sl.com',
       name: 'Prafulla'
     }
   },
   'aditi@sl.com': {
     password: 'password',
     details: {
-      email: 'akashkhaitan@gmail.com',
+      email: 'aditi@sl.com',
       name: 'Aditi'
     }
   }
