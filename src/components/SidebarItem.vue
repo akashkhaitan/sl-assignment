@@ -6,20 +6,52 @@ defineProps({
       return {
         selected: false,
         title: 'Email Campaign',
-        icon: 'IconEmailCamp'
+        icon: 'IconEmailCamp',
+        to: 'emailCampaign',
+        link: ''
       }
     }
   }
 })
+
+import { useRouter } from 'vue-router'
+import { useRoute } from 'vue-router'
+import { ref, watch } from 'vue'
+
+const router = useRouter()
+const route = useRoute()
+
+const navigateTo = (to) => {
+  router.push({ name: to })
+}
+
+const openLink = (link) => {
+  window.open(link, '_blank')
+}
+
+const handleNavigation = (item) => {
+  if (item.to) {
+    navigateTo(item.to)
+  } else {
+    openLink(item.link)
+  }
+}
+
+const getSelected = (to) => {
+  return route.name === to
+}
 </script>
 
 <template>
-  <div :class="{ selected: item.selected, 'sidebar-item': true }">
+  <div
+    :class="{ selected: getSelected(item.to), 'sidebar-item': true }"
+    @click="handleNavigation(item)"
+  >
     <span class="bar"></span>
     <component
       :is="item.icon"
-      :outerFill="item.selected ? '#757AE9' : '#E1E3EF'"
-      :innerFill="item.selected ? 'white' : '#A9ABC1'"
+      :outerFill="getSelected(item.to) ? '#757AE9' : '#E1E3EF'"
+      :innerFill="getSelected(item.to) ? 'white' : '#A9ABC1'"
     ></component>
     <span>{{ item.title }}</span>
   </div>

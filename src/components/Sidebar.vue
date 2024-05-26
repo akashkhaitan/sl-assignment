@@ -5,6 +5,8 @@ import IconEmailCamp from './icons/IconEmailCamp.vue'
 import IconMasterInbox from './icons/IconMasterInbox.vue'
 import IconSlack from './icons/IconSlack.vue'
 import IconTutorial from './icons/IconTutorial.vue'
+import { onMounted, ref, watch } from 'vue'
+import { useRoute } from 'vue-router'
 
 const icons = {
   IconAllLeads,
@@ -15,34 +17,39 @@ const icons = {
   IconTutorial
 }
 
-const upperItems = [
+const routeItems = [
   {
     selected: false,
     title: 'All Leads',
-    icon: icons.IconAllLeads
+    icon: icons.IconAllLeads,
+    to: 'allLeads'
   },
   {
     selected: false,
     title: 'Master Inbox',
-    icon: icons.IconMasterInbox
+    icon: icons.IconMasterInbox,
+    to: 'masterInbox'
   },
   {
-    selected: true,
+    selected: false,
     title: 'Email Campaign',
-    icon: icons.IconEmailCamp
+    icon: icons.IconEmailCamp,
+    to: 'emailCampaign'
   }
 ]
 
-const belowItems = [
+const linkItems = [
   {
     selected: false,
     title: 'Join Slack Community',
-    icon: icons.IconSlack
+    icon: icons.IconSlack,
+    link: 'http://google.com'
   },
   {
     selected: false,
     title: 'Smartlead Tutorials',
-    icon: icons.IconTutorial
+    icon: icons.IconTutorial,
+    link: 'http://google.com'
   }
 ]
 </script>
@@ -50,15 +57,15 @@ const belowItems = [
 <template>
   <div class="sidebar">
     <div class="upper-section">
-      <sidebarItem v-for="sidebaritem in upperItems" :item="sidebaritem" :key="sidebaritem.title" />
+      <SidebarItem v-for="sidebaritem in routeItems" :item="sidebaritem" :key="sidebaritem.title" />
     </div>
     <div class="bootom-section">
       <div class="bar-section">
         <span class="bar"></span>
       </div>
       <div class="bottom-items">
-        <sidebarItem
-          v-for="sidebaritem in belowItems"
+        <SidebarItem
+          v-for="sidebaritem in linkItems"
           :item="sidebaritem"
           :key="sidebaritem.title"
         />
