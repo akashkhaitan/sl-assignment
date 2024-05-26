@@ -21,4 +21,8 @@ button:disabled {
   background: #edeef8;
   color: #a9abc1;
 }
+button:hover {
+  background: var(--primary-but-hover);
+  cursor: pointer;
+}
 </style>
