@@ -1,7 +1,8 @@
 <script setup>
-import { computed, ref } from 'vue'
+import { computed, ref, watch } from 'vue'
 import Button from './common/Button.vue'
 import InputField from './common/InputField.vue'
+import { slUsers } from '@/mocks/slUsers'
 
 const userEmail = ref('')
 const userPassword = ref('')
@@ -24,6 +25,26 @@ const passwordInput = computed(() => {
         buttonText: 'Show'
       }
 })
+
+const error = ref(false)
+
+const clearError = () => {
+  error.value = false
+}
+/* Any change in user email or password, make error as false */
+watch(userEmail, clearError)
+watch(userPassword, clearError)
+
+const handleSignIn = () => {
+  if (
+    Object.prototype.hasOwnProperty.call(slUsers, userEmail.value) &&
+    slUsers[userEmail.value].password === userPassword.value
+  ) {
+    error.value = false
+  } else {
+    error.value = true
+  }
+}
 </script>
 
 <template>
@@ -51,7 +72,10 @@ const passwordInput = computed(() => {
       </InputField>
     </form>
 
-    <Button class="signinButton" :disabled="!userEmail || !userPassword">Sign In</Button>
+    <Button class="signinButton" :disabled="!userEmail || !userPassword" @click="handleSignIn"
+      >Sign In</Button
+    >
+    <div v-if="error" class="error">Invalid Credentials</div>
   </div>
 </template>
 
@@ -117,5 +141,10 @@ const passwordInput = computed(() => {
   padding: 10px;
   height: 40.4px;
   cursor: pointer;
+}
+
+.error {
+  text-align: center;
+  color: var(--negative);
 }
 </style>
