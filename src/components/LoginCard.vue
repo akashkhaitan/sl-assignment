@@ -83,7 +83,9 @@ onMounted(() => {
         autoComplete="on"
       >
         <template #rightAbove>
-          <button class="link-button forgot-password">Forgot password?</button>
+          <button class="link-button forgot-password" @click.prevent="() => {}">
+            Forgot password?
+          </button>
         </template>
         <template #rightAnchor>
           <button class="link-button" @click="handleShowPassword">
