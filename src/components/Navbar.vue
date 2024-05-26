@@ -1,6 +1,9 @@
 <script setup>
 import { ref, watch } from 'vue'
-import { RouterLink } from 'vue-router'
+import GiftBox from './icons/GiftBox.vue'
+import QuestioMarkOutlined from './icons/QuestioMarkOutlined.vue'
+import Hug from './common/Hug.vue'
+import ThreeStars from './icons/ThreeStars.vue'
 
 const props = defineProps({
   minimal: {
@@ -11,7 +14,6 @@ const props = defineProps({
 })
 const headerHeight = ref('50px')
 watch(props, () => {
-  console.log(props.minimal)
   headerHeight.value = props.minimal ? '80px' : '50px'
 })
 </script>
@@ -20,11 +22,11 @@ watch(props, () => {
   <header>
     <img alt="logo" class="logo" src="@/assets/logo.svg" width="131" height="31" />
 
-    <div class="wrapper">
-      <nav>
-        <RouterLink to="/">Dashboard</RouterLink>
-        <RouterLink to="/login">Login</RouterLink>
-      </nav>
+    <div v-if="!minimal" class="right-container">
+      <Hug :icon="ThreeStars" text="Trail expires in 12 days" width="auto"> </Hug>
+      <QuestioMarkOutlined></QuestioMarkOutlined>
+      <GiftBox></GiftBox>
+      <img src="@/assets/avatar-default.jpeg" class="avatar" />
     </div>
   </header>
 </template>
@@ -34,51 +36,24 @@ header {
   line-height: 1.5;
   min-height: v-bind(headerHeight);
   background-color: var(--header-background);
+  justify-content: space-between;
+  display: flex;
+  place-items: center;
 }
 
-nav a.router-link-exact-active {
-  color: var(--color-text);
+.logo {
+  margin-left: 18px;
 }
 
-nav a.router-link-exact-active:hover {
-  background-color: transparent;
+.right-container {
+  display: flex;
+  gap: 20px;
+  place-items: center;
+  margin-right: 20px;
 }
-
-nav a {
-  display: inline-block;
-  padding: 0 1rem;
-  border-left: 1px solid var(--color-border);
-}
-
-nav a:first-of-type {
-  border: 0;
-}
-
-@media (min-width: 1024px) {
-  header {
-    display: flex;
-    place-items: center;
-    /*    padding-right: calc(var(--section-gap) / 2); */
-  }
-
-  .logo {
-    margin-left: 18px;
-  }
-
-  header .wrapper {
-    flex-grow: 1;
-    display: flex;
-    place-items: flex-start;
-    flex-wrap: wrap;
-  }
-
-  nav {
-    text-align: left;
-    /* margin-left: -1rem;
-    font-size: 1rem;
-
-    padding: 1rem 0;
-    margin-top: 1rem; */
-  }
+.avatar {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
 }
 </style>
