@@ -1,9 +1,16 @@
 <script setup>
-import { computed, ref, watch } from 'vue'
+import { computed, ref, watch, onMounted } from 'vue'
 import Button from './common/Button.vue'
 import InputField from './common/InputField.vue'
 import { slUsers } from '@/mocks/slUsers'
+import { useRouter } from 'vue-router'
+import { useStore } from 'vuex'
 
+const store = useStore()
+const addLoggedInUser = (user) => store.dispatch('addLoggedInUser', user)
+const loggedInUser = computed(() => store.getters.loggedInUser)
+
+const router = useRouter()
 const userEmail = ref('')
 const userPassword = ref('')
 
@@ -41,10 +48,23 @@ const handleSignIn = () => {
     slUsers[userEmail.value].password === userPassword.value
   ) {
     error.value = false
+    addLoggedInUser(slUsers[userEmail.value].details)
   } else {
     error.value = true
   }
 }
+
+watch(loggedInUser, () => {
+  if (loggedInUser.value !== null) {
+    router.push({ name: 'dashboard' })
+  }
+})
+
+onMounted(() => {
+  if (loggedInUser.value !== null) {
+    router.push({ name: 'dashboard' })
+  }
+})
 </script>
 
 <template>

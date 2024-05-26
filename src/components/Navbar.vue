@@ -1,10 +1,12 @@
 <script setup>
-import { ref, watch } from 'vue'
+import { ref, watch, computed, onMounted } from 'vue'
 import GiftBox from './icons/GiftBox.vue'
 import QuestioMarkOutlined from './icons/QuestioMarkOutlined.vue'
 import Hug from './common/Hug.vue'
 import ThreeStars from './icons/ThreeStars.vue'
 import Button from './common/Button.vue'
+import { useStore } from 'vuex'
+import { useRouter } from 'vue-router'
 
 const props = defineProps({
   minimal: {
@@ -13,6 +15,11 @@ const props = defineProps({
     required: false
   }
 })
+
+const store = useStore()
+const loggedInUser = computed(() => store.getters.loggedInUser)
+const clearLoggedInUser = () => store.dispatch('clearLoggedInUser')
+
 const headerHeight = ref('50px')
 watch(props, () => {
   headerHeight.value = props.minimal ? '80px' : '50px'
@@ -26,7 +33,25 @@ const handleProfileClick = () => {
 const handleLogout = (event) => {
   event.stopPropagation()
   showPopup.value = false
+  clearLoggedInUser()
 }
+
+const router = useRouter()
+const redirectToLogin = () => {
+  router.replace({ name: 'login' })
+}
+
+watch(loggedInUser, () => {
+  if (loggedInUser.value === null) {
+    redirectToLogin()
+  }
+})
+
+onMounted(() => {
+  if (loggedInUser.value === null) {
+    redirectToLogin()
+  }
+})
 </script>
 
 <template>
@@ -41,7 +66,7 @@ const handleLogout = (event) => {
         <img src="@/assets/avatar-default.jpeg" class="avatar" />
         <div class="popup" v-if="showPopup">
           <div class="popup-item">Logged In User</div>
-          <div class="popup-item">akashkhaitan@gmail.com</div>
+          <div class="popup-item">{{ loggedInUser?.email }}</div>
           <div class="popup-item">
             <Button class="logout-button" @click="handleLogout">Logout</Button>
           </div>
