@@ -25,14 +25,8 @@ watch(props, () => {
   headerHeight.value = props.minimal ? '80px' : '50px'
 })
 
-const showPopup = ref(false)
-
-const handleProfileClick = () => {
-  showPopup.value = !showPopup.value
-}
 const handleLogout = (event) => {
   event.stopPropagation()
-  showPopup.value = false
   clearLoggedInUser()
 }
 
@@ -62,9 +56,9 @@ onMounted(() => {
       <Hug :icon="ThreeStars" text="Trail expires in 12 days" width="auto"> </Hug>
       <QuestioMarkOutlined></QuestioMarkOutlined>
       <GiftBox></GiftBox>
-      <button class="avatar-button" @click="handleProfileClick">
+      <button class="avatar-button">
         <img src="@/assets/avatar-default.jpeg" class="avatar" />
-        <div class="popup" v-if="showPopup">
+        <div class="popup">
           <div class="popup-item">Logged In User</div>
           <div class="popup-item">{{ loggedInUser?.email }}</div>
           <div class="popup-item">
@@ -112,6 +106,7 @@ header {
 }
 
 .avatar-button .popup {
+  display: none;
   border-radius: 3px;
   padding: 20px;
   height: auto;
@@ -120,6 +115,10 @@ header {
   top: 100%;
   right: 0;
   background: #ffffff;
+}
+
+.avatar-button:hover .popup {
+  display: block;
 }
 
 .logout-button {
