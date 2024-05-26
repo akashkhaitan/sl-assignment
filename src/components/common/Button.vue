@@ -5,14 +5,13 @@ const attrs = useAttrs()
 </script>
 
 <template>
-  <button v-bind="attrs"><slot /></button>
+  <button tabindex="1" v-bind="attrs"><slot /></button>
 </template>
 
 <style scoped>
 button {
   background: var(--primary-but);
   color: white;
-  outline: none;
   border: none;
   font-weight: 500;
   border-radius: 3px;

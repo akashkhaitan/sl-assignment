@@ -20,6 +20,7 @@ const emit = defineEmits(['update:modelValue'])
     </div>
     <div class="input-field">
       <input
+        tabindex="1"
         type="text"
         v-bind="$attrs"
         :value="modelValue"
