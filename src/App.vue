@@ -21,6 +21,7 @@ header {
   width: 100%;
   display: flex;
   place-items: center;
+  z-index: 1;
   /*    padding-right: calc(var(--section-gap) / 2); */
 }
 
