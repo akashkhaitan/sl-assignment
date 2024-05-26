@@ -207,10 +207,13 @@ const campaigns = ref([
 .header {
   height: 50px;
   background-color: var(--table-header-bg-color);
+  color: var(--table-header-color);
   width: 100%;
   display: flex;
   padding: 10px;
   align-items: center;
+  font-size: 16px;
+  font-weight: 700;
 }
 .select {
   width: 5%;
