@@ -53,7 +53,16 @@ const belowItems = [
       <sidebarItem v-for="sidebaritem in upperItems" :item="sidebaritem" :key="sidebaritem.title" />
     </div>
     <div class="bootom-section">
-      <sidebarItem v-for="sidebaritem in belowItems" :item="sidebaritem" :key="sidebaritem.title" />
+      <div class="bar-section">
+        <span class="bar"></span>
+      </div>
+      <div class="bottom-items">
+        <sidebarItem
+          v-for="sidebaritem in belowItems"
+          :item="sidebaritem"
+          :key="sidebaritem.title"
+        />
+      </div>
     </div>
   </div>
 </template>
@@ -63,5 +72,25 @@ const belowItems = [
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+}
+
+.bootom-section {
+  height: 100px;
+  display: flex;
+  flex-direction: inherit;
+  justify-content: space-between;
+}
+
+.bar-section {
+  display: flex;
+  justify-content: center;
+}
+
+.bar {
+  width: 50px;
+  display: inline-block;
+  height: 2px;
+  background-color: #e1e3ef;
+  border-radius: 3px 3px 0px 0px;
 }
 </style>
