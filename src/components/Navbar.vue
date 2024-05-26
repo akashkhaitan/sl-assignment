@@ -25,7 +25,7 @@ const handleProfileClick = () => {
 }
 const handleLogout = (event) => {
   event.stopPropagation()
-  console.log('Logout')
+  showPopup.value = false
 }
 </script>
 
