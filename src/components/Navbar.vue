@@ -59,8 +59,10 @@ onMounted(() => {
       <button class="avatar-button">
         <img src="@/assets/avatar-default.jpeg" class="avatar" />
         <div class="popup">
-          <div class="popup-item">Logged In User</div>
-          <div class="popup-item">{{ loggedInUser?.email }}</div>
+          <div class="popup-item">
+            <span>Logged In User</span>
+            <span>{{ loggedInUser?.email }}</span>
+          </div>
           <div class="popup-item">
             <Button class="logout-button" @click="handleLogout">Logout</Button>
           </div>
@@ -115,6 +117,13 @@ header {
   top: 100%;
   right: 0;
   background: #ffffff;
+}
+
+.popup-item {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  margin-bottom: 4px;
 }
 
 .avatar-button:hover .popup {
