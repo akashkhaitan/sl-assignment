@@ -1,7 +1,8 @@
 import { createStore } from 'vuex'
-const state = {
-  loggedInUser: null
-}
+import { useStorage } from '@vueuse/core'
+
+const state = useStorage('my-store', { loggedInUser: null })
+
 const mutations = {
   addLoggedInUser(state, user) {
     state.loggedInUser = user
