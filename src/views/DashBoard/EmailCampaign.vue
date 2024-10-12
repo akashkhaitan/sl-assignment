@@ -3,17 +3,28 @@ import AllCampaigns from '@/components/AllCampaigns.vue'
 import Topbar from '@/components/Topbar.vue'
 import { ref, watch } from 'vue'
 import { campaigns } from '@/mocks/allCampaigns'
+import { useRouter } from 'vue-router'
 
-const searchText = ref('')
 const filteredCampaigns = ref([...campaigns])
 
+const props = defineProps({
+  searchText: {
+    type: String,
+    default: ''
+  }
+})
+
+const router = useRouter()
+
 const handleSearchValue = (searchValue) => {
-  searchText.value = searchValue
+  const query = { search: searchValue }
+  if (searchValue === '') delete query.search
+  router.replace({ name: 'emailCampaign', query })
 }
 
-watch(searchText, () => {
+watch(() => {
   filteredCampaigns.value = campaigns.filter((campaign) =>
-    campaign.title.toLowerCase().includes(searchText.value.toLowerCase())
+    campaign.title.toLowerCase().includes(props.searchText.toLowerCase())
   )
 })
 </script>

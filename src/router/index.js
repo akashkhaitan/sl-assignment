@@ -25,7 +25,8 @@ const router = createRouter({
         {
           path: 'email-campaign',
           name: 'emailCampaign',
-          component: EmailCampaign
+          component: EmailCampaign,
+          props: (route) => ({ searchText: route.query.search })
         },
         {
           path: 'all-leads',
